@@ -43,14 +43,14 @@ Para usar a calculadora, simplesmente abra o arquivo `index.html` em um navegado
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu_usuario/seu_repositorio.git
+   git clone https://github.com/tiagouzl/calculadorasimples.git
 
 ## Como Contribuir
 
 Para contribuir com este projeto, siga os passos abaixo:
 
 1. **Fork o Repositório**: Faça um fork do projeto para sua conta no GitHub.
-2. **Clone o Fork**: `git clone https://github.com/seu_usuario/seu_repositorio_fork.git`
+2. **Clone o Fork**: `git clone https://github.com/tiagouzl/calculadorasimples.git`
 3. **Configure o Ambiente**: Configure o ambiente de desenvolvimento executando qualquer script necessário ou instalando dependências.
 4. **Faça suas Mudanças**: Adicione suas funcionalidades ou correções.
 5. **Execute os Testes**: Garanta que todos os testes existentes passam e, se estiver adicionando uma nova funcionalidade, adicione novos testes.
