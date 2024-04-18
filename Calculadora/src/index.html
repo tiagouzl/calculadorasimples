@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.4/dist/tailwind.min.css" rel="stylesheet">
+<style>
+  /* estilos personalizados */
+  .calculator-container {
+    max-width: 320px; /* Largura da calculadora */
+    margin: 3rem auto; /* Centralizar a calculadora */
+  }
+
+  .calculator-display {
+    background: #2d2d2d; /* Fundo escuro para o display */
+    color: #fff; /* Cor do texto branco */
+    padding: 1rem; /* Preenchimento em torno do texto */
+    border-radius: 0.25rem; /* Cantos levemente arredondados */
+    margin-bottom: 0.5rem; /* Espaço abaixo do display */
+    word-wrap: break-word; /* Garante a quebra do texto */
+  }
+
+  .calculator-button {
+    background: #1e1e1e; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    border: none; /* Remover borda do botão */
+    padding: 1rem; /* Preenchimento dentro dos botões */
+    border-radius: 0.25rem; /* Cantos arredondados */
+    margin: 0.25rem; /* Espaço ao redor dos botões */
+    transition: background-color 0.3s; /* Transição suave da cor de fundo ao passar o mouse */
+  }
+
+  .calculator-button:hover {
+    background: #4a4a4a; /* Fundo mais claro ao passar o mouse */
+  }
+
+  .calculator-button.equals {
+    grid-row: span 2; /* Faz o botão de igual ocupar duas linhas */
+    background: #ff2e2e; /* Fundo vermelho para o botão de igual */
+  }
+
+  .calculator-button.equals:hover {
+    background: #ff5757; /* Vermelho mais claro ao passar o mouse */
+  }
+</style>
+</head>
+<body>
+<div class="calculator-container bg-gray-800 p-5 rounded-lg shadow-xl">
+  <div id="display" class="calculator-display text-right text-2xl"></div>
+  <div class="grid grid-cols-4 gap-2">
+    <!-- Linha para as teclas funcionais -->
+    <button class="calculator-button">+</button>
+    <button class="calculator-button">C</button>
+    <button class="calculator-button">%</button>
+    <button class="calculator-button">÷</button>
+    
+    <!-- Linhas para as teclas numéricas -->
+    <button class="calculator-button">7</button>
+    <button class="calculator-button">8</button>
+    <button class="calculator-button">9</button>
+    <button class="calculator-button">×</button>
+    
+    <button class="calculator-button">4</button>
+    <button class="calculator-button">5</button>
+    <button class="calculator-button">6</button>
+    <button class="calculator-button">-</button>
+    
+    <button class="calculator-button">1</button>
+    <button class="calculator-button">2</button>
+    <button class="calculator-button">3</button>
+    <button class="calculator-button">+</button>
+    
+    <button class="calculator-button">0</button>
+    <button class="calculator-button">.</button>
+    <button class="calculator-button">±</button>
+    <button class="calculator-button equals">=</button>
+  </div>
+</div>
+
+<!-- JavaScript para a funcionalidade da calculadora -->
+<script src="js/script.js"></script>
+
+</body>
+</html>

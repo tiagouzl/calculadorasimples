@@ -1,0 +1,64 @@
+# Calculadora
+
+Este projeto é uma calculadora simples desenvolvida para ser utilizada em navegadores web. Ela oferece funcionalidades básicas de adição, subtração, multiplicação e divisão, além de suporte para operações com números decimais e cálculo de porcentagens.
+
+## Tecnologias Utilizadas
+
+- HTML
+- CSS
+- JavaScript
+- Tailwind CSS para estilos rápidos e responsivos
+
+## Funcionalidades
+
+- Operações básicas: adição, subtração, multiplicação, divisão.
+- Suporte a números decimais.
+- Conversão de números para porcentagem.
+- Alteração do sinal de números (positivo/negativo).
+- Limpeza da entrada atual ou de todas as entradas.
+- Interface responsiva adequada para dispositivos móveis e desktops.
+
+## Problemas Conhecidos e Limitações
+
+- A calculadora não suporta operações avançadas como funções trigonométricas ou cálculos exponenciais.
+- Existe um limite de 10 dígitos para a entrada, o que pode impedir o uso em cálculos de maior escala.
+
+## Desenvolvimento Futuro
+
+- Adicionar suporte para funções trigonométricas como seno, cosseno e tangente.
+- Implementar um histórico de cálculos para que os usuários possam ver e reutilizar resultados anteriores.
+- Melhorar a responsividade da interface para dispositivos com telas menores.
+
+## Visualização
+
+A calculadora possui um design simples e intuitivo, facilitando o uso em qualquer dispositivo. Abaixo está uma imagem que mostra a interface do usuário:
+
+![src/assets/interface.png]
+
+## Como Usar
+
+Para usar a calculadora, simplesmente abra o arquivo `index.html` em um navegador moderno.
+
+## Como Executar Localmente
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu_usuario/seu_repositorio.git
+
+## Como Contribuir
+
+Para contribuir com este projeto, siga os passos abaixo:
+
+1. **Fork o Repositório**: Faça um fork do projeto para sua conta no GitHub.
+2. **Clone o Fork**: `git clone https://github.com/seu_usuario/seu_repositorio_fork.git`
+3. **Configure o Ambiente**: Configure o ambiente de desenvolvimento executando qualquer script necessário ou instalando dependências.
+4. **Faça suas Mudanças**: Adicione suas funcionalidades ou correções.
+5. **Execute os Testes**: Garanta que todos os testes existentes passam e, se estiver adicionando uma nova funcionalidade, adicione novos testes.
+6. **Documente suas Mudanças**: Atualize o README, se necessário, e quaisquer outros documentos relacionados.
+7. **Envie um Pull Request**: Envie um PR para o repositório original com uma descrição clara das mudanças e qualquer outra informação relevante.
+
+## Links Úteis
+
+- [Documentação do Tailwind CSS](https://tailwindcss.com/docs)
+- [Tutorial de Git](https://git-scm.com/book/en/v2)
+- [Guia de Markdown](https://www.markdownguide.org)
