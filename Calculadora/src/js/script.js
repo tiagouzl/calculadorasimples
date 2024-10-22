@@ -1,4 +1,3 @@
-// JavaScript para a funcionalidade da calculadora
 const display = document.getElementById('display');
 let currentInput = '';
 let previousInput = '';
@@ -78,6 +77,15 @@ function inputPlusMinus() {
     updateDisplay();
 }
 
+function handleEnterKey() {
+    operate();
+}
+
+function handleBackspaceKey() {
+    currentInput = currentInput.slice(0, -1);
+    updateDisplay();
+}
+
 document.querySelectorAll('.calculator-button').forEach(button => {
     button.addEventListener('click', () => {
         switch (button.textContent) {
@@ -113,9 +121,9 @@ document.addEventListener('keydown', (event) => {
     if ((event.key >= '0' && event.key <= '9') || event.key === '.') {
         inputDigit(event.key);
     } else if (event.key === 'Enter' || event.key === '=') {
-        operate();
+        handleEnterKey();
     } else if (event.key === 'Backspace') {
-        clear();
+        handleBackspaceKey();
     } else if (event.key === '+' || event.key === '-' || event.key === '*' || event.key === '/') {
         handleOperator(event.key.replace('*', '×').replace('/', '÷'));
     }
