@@ -44,6 +44,12 @@ Para usar a calculadora, simplesmente abra o arquivo `index.html` em um navegado
 1. Clone o repositório:
    ```bash
    git clone https://github.com/tiagouzl/calculadorasimples.git
+   ```
+2. Navegue até o diretório do projeto:
+   ```bash
+   cd calculadorasimples
+   ```
+3. Abra o arquivo `index.html` em seu navegador preferido.
 
 ## Como Contribuir
 
