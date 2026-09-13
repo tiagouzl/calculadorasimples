@@ -5,42 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calculadora</title>
 <meta name="description" content="Calculadora web simples">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e1e1e'/><text x='50' y='68' font-size='60' text-anchor='middle' fill='%23ff2e2e'>=</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23151821'/><text x='50' y='68' font-size='60' text-anchor='middle' fill='%236366f1'>=</text></svg>">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-  /* Tokens: um acento (amber), uma escala de raio (card 20px, resto 14px).
+  /* Tokens: um acento (índigo), uma escala de raio (card 20px, resto 14px).
      Tema claro via prefers-color-scheme — sem toggle, a marca não perde nada. */
   :root {
-    --page: #e7e5e0;
-    --case: #fafaf9;
-    --case-edge: #d6d3d1;
-    --screen: #1c1917;
-    --screen-text: #fafaf9;
-    --screen-sub: #a8a29e;
-    --key: #f5f5f4;
-    --key-hover: #e7e5e0;
-    --key-text: #1c1917;
-    --accent: #b45309;
-    --accent-hover: #92400e;
-    --accent-text: #fffbeb;
+    --page: #eef0f6;
+    --case: #ffffff;
+    --case-edge: #e2e5ee;
+    --screen: #f4f5fa;
+    --screen-text: #0b0d12;
+    --screen-sub: #5b6376;
+    --key: #eef0f6;
+    --key-hover: #e2e5ee;
+    --key-text: #0b0d12;
+    --accent: #4f46e5;
+    --accent-hover: #4338ca;
+    --accent-text: #ffffff;
     --danger-text: #b91c1c;
     --error-text: #b91c1c;
-    --shadow: 0 24px 48px -16px rgb(28 25 23 / 0.25);
+    --shadow: 0 24px 48px -16px rgb(11 13 18 / 0.18);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --page: #0c0a09;
-      --case: #1c1917;
-      --case-edge: #44403c;
-      --screen: #030303;
-      --screen-text: #fafaf9;
-      --screen-sub: #a8a29e;
-      --key: #292524;
-      --key-hover: #44403c;
-      --key-text: #f5f5f4;
-      --accent: #d97706;
-      --accent-hover: #f59e0b;
-      --accent-text: #1c1917;
+      --page: #0b0d12;
+      --case: #151821;
+      --case-edge: #232839;
+      --screen: #08090d;
+      --screen-text: #f5f7fa;
+      --screen-sub: #8b93a7;
+      --key: #1d2230;
+      --key-hover: #2a3042;
+      --key-text: #f5f7fa;
+      --accent: #6366f1;
+      --accent-hover: #818cf8;
+      --accent-text: #ffffff;
       --danger-text: #f87171;
       --error-text: #f87171;
       --shadow: 0 24px 48px -16px rgb(0 0 0 / 0.7);
@@ -84,9 +84,10 @@
   }
   #display {
     color: var(--screen-text);
-    font-size: 2.25rem;
-    font-weight: 600;
-    line-height: 1.2;
+    font-size: clamp(2.5rem, 13vw, 3.25rem);
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
     text-align: right;
     white-space: nowrap;
     overflow: hidden;

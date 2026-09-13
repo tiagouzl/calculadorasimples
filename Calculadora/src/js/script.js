@@ -13,8 +13,62 @@ function updateDisplay() {
         return;
     }
     display.classList.remove('error');
-    history.textContent = operation ? `${previousInput} ${operation}` : '';
-    display.textContent = currentInput === '' ? '0' : currentInput;
+    const preview = previewResult();
+    if (preview !== null) {
+        history.textContent = `${fmtDisplay(previousInput)} ${operation} ${fmtDisplay(currentInput)} = ${fmtDisplay(preview)}`;
+    } else {
+        history.textContent = operation ? `${fmtDisplay(previousInput)} ${operation}` : '';
+    }
+    display.textContent = fmtDisplay(currentInput);
+}
+
+// Formatação pt-BR só para exibição ("1250" → "1.250", "0.5" → "0,5").
+// A precisão interna nunca muda: tudo continua parseFloat com ponto.
+function fmtDisplay(s) {
+    if (s === '' || s === null || s === undefined) return '0';
+    if (/e/i.test(s) || !isFinite(Number(s))) return s; // erro ou exponencial: exibe cru
+    let sign = '';
+    let int = s;
+    let dec;
+    if (s.includes('.')) [int, dec] = s.split('.');
+    if (int.startsWith('-')) { sign = '-'; int = int.slice(1); }
+    int = int.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    let out = sign + (int === '' ? '0' : int);
+    if (dec !== undefined) out += ',' + dec;
+    else if (s.endsWith('.')) out += ',';
+    return out;
+}
+
+// Preview vivo: calcula sobre os operandos atuais sem tocar no estado.
+function previewResult() {
+    if (!operation || previousInput === '' || currentInput === '') return null;
+    const prev = parseFloat(previousInput);
+    const current = parseFloat(currentInput);
+    if (isNaN(prev) || isNaN(current)) return null;
+    const result = compute(prev, current, operation);
+    return result.error ? null : result.value;
+}
+
+// Núcleo puro do cálculo; operate() e o preview usam o mesmo caminho.
+function compute(prev, current, op) {
+    switch (op) {
+        case '+':
+            return { value: fmt(prev + current) };
+        case '-':
+            return { value: fmt(prev - current) };
+        case '×':
+            return { value: fmt(prev * current) };
+        case '÷':
+            if (current === 0) return { error: 'Não é possível dividir por zero' };
+            return { value: fmt(prev / current) };
+        default:
+            return null;
+    }
+}
+
+// Corta o ruído binário (0.1 + 0.2 → "0.3", não "0.30000000000000004").
+function fmt(n) {
+    return parseFloat(n.toPrecision(12)).toString();
 }
 
 function clearError() {
@@ -61,30 +115,17 @@ function operate() {
     const prev = parseFloat(previousInput);
     const current = parseFloat(currentInput);
     if (isNaN(prev) || isNaN(current)) return;
-    switch (operation) {
-        case '+':
-            currentInput = (prev + current).toString();
-            break;
-        case '-':
-            currentInput = (prev - current).toString();
-            break;
-        case '×':
-            currentInput = (prev * current).toString();
-            break;
-        case '÷':
-            if (current === 0) {
-                currentInput = '';
-                previousInput = '';
-                operation = null;
-                error = 'Não é possível dividir por zero';
-                updateDisplay();
-                return;
-            }
-            currentInput = (prev / current).toString();
-            break;
-        default:
-            return;
+    const result = compute(prev, current, operation);
+    if (!result) return; // operador desconhecido
+    if (result.error) {
+        currentInput = '';
+        previousInput = '';
+        operation = null;
+        error = result.error;
+        updateDisplay();
+        return;
     }
+    currentInput = result.value;
     previousInput = '';
     operation = null;
     updateDisplay();
