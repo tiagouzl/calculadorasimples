@@ -8,9 +8,47 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e1e1e'/><text x='50' y='68' font-size='60' text-anchor='middle' fill='%23ff2e2e'>=</text></svg>">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
+  /* Tokens: um acento (amber), uma escala de raio (card 20px, resto 14px).
+     Tema claro via prefers-color-scheme — sem toggle, a marca não perde nada. */
+  :root {
+    --page: #e7e5e0;
+    --case: #fafaf9;
+    --case-edge: #d6d3d1;
+    --screen: #1c1917;
+    --screen-text: #fafaf9;
+    --screen-sub: #a8a29e;
+    --key: #f5f5f4;
+    --key-hover: #e7e5e0;
+    --key-text: #1c1917;
+    --accent: #b45309;
+    --accent-hover: #92400e;
+    --accent-text: #fffbeb;
+    --danger-text: #b91c1c;
+    --error-text: #b91c1c;
+    --shadow: 0 24px 48px -16px rgb(28 25 23 / 0.25);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --page: #0c0a09;
+      --case: #1c1917;
+      --case-edge: #44403c;
+      --screen: #030303;
+      --screen-text: #fafaf9;
+      --screen-sub: #a8a29e;
+      --key: #292524;
+      --key-hover: #44403c;
+      --key-text: #f5f5f4;
+      --accent: #d97706;
+      --accent-hover: #f59e0b;
+      --accent-text: #1c1917;
+      --danger-text: #f87171;
+      --error-text: #f87171;
+      --shadow: 0 24px 48px -16px rgb(0 0 0 / 0.7);
+    }
+  }
   body {
-    background: #111827;
-    min-height: 100vh;
+    background: var(--page);
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,10 +56,14 @@
   }
   .calculator-container {
     width: min(92vw, 340px);
+    background: var(--case);
+    border: 1px solid var(--case-edge);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
   }
   .calculator-display {
-    background: #030712;
-    border-radius: 0.75rem;
+    background: var(--screen);
+    border-radius: 14px;
     padding: 1rem 1.25rem;
     margin-bottom: 0.75rem;
     min-height: 5.5rem;
@@ -31,16 +73,17 @@
     overflow: hidden;
   }
   #history {
-    color: #9ca3af;
+    color: var(--screen-sub);
     font-size: 0.875rem;
     min-height: 1.25rem;
     text-align: right;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-variant-numeric: tabular-nums;
   }
   #display {
-    color: #fff;
+    color: var(--screen-text);
     font-size: 2.25rem;
     font-weight: 600;
     line-height: 1.2;
@@ -48,53 +91,58 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-variant-numeric: tabular-nums;
   }
   #display.error {
-    color: #f87171;
+    color: var(--error-text);
     font-size: 1.25rem;
   }
   .calculator-button {
-    background: #1f2937;
-    color: #f9fafb;
+    background: var(--key);
+    color: var(--key-text);
     border: none;
-    border-radius: 0.75rem;
+    border-radius: 14px;
     padding: 1rem 0;
     font-size: 1.25rem;
+    font-variant-numeric: tabular-nums;
     cursor: pointer;
     transition: background-color 0.15s, transform 0.05s;
   }
   .calculator-button:hover {
-    background: #374151;
+    background: var(--key-hover);
   }
-  .calculator-button:active {
+  .calculator-button:active, .calculator-button.key-flash {
     transform: scale(0.96);
+    background: var(--key-hover);
   }
   .calculator-button:focus-visible {
-    outline: 2px solid #60a5fa;
+    outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
   .calculator-button.operator {
-    background: #374151;
-    color: #fbbf24;
-  }
-  .calculator-button.operator:hover {
-    background: #4b5563;
+    color: var(--accent);
+    font-weight: 600;
   }
   .calculator-button.danger {
-    color: #f87171;
+    color: var(--danger-text);
   }
   .calculator-button.equals {
     grid-row: span 2;
-    background: #dc2626;
+    background: var(--accent);
+    color: var(--accent-text);
     font-size: 1.5rem;
   }
-  .calculator-button.equals:hover {
-    background: #ef4444;
+  .calculator-button.equals:hover, .calculator-button.equals.key-flash {
+    background: var(--accent-hover);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .calculator-button { transition: none; }
+    .calculator-button:active, .calculator-button.key-flash { transform: none; }
   }
 </style>
 </head>
 <body>
-<main class="calculator-container bg-gray-800 p-5 rounded-2xl shadow-2xl">
+<main class="calculator-container p-5">
   <div class="calculator-display" role="status" aria-live="polite">
     <div id="history"></div>
     <div id="display">0</div>

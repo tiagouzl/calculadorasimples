@@ -152,15 +152,30 @@ document.querySelectorAll('.calculator-button').forEach(button => {
 });
 
 document.addEventListener('keydown', (event) => {
-    if ((event.key >= '0' && event.key <= '9') || event.key === '.') {
+    if (event.key >= '0' && event.key <= '9') {
         inputDigit(event.key);
+    } else if (event.key === '.') {
+        inputDecimal();
     } else if (event.key === 'Enter' || event.key === '=') {
         handleEnterKey();
     } else if (event.key === 'Backspace') {
         handleBackspaceKey();
     } else if (event.key === '+' || event.key === '-' || event.key === '*' || event.key === '/') {
         handleOperator(event.key.replace('*', '×').replace('/', '÷'));
+    } else {
+        return;
     }
+    flashKey(event.key);
 });
+
+// Feedback tátil: a tecla física acende o botão correspondente na tela.
+function flashKey(key) {
+    const label = { '*': '×', '/': '÷', 'Enter': '=', 'Backspace': '⌫' }[key] ?? key;
+    const button = [...document.querySelectorAll('.calculator-button')]
+        .find(b => b.textContent === label);
+    if (!button) return;
+    button.classList.add('key-flash');
+    setTimeout(() => button.classList.remove('key-flash'), 120);
+}
 
 window.onload = clear; // Inicializa a tela com limpeza
