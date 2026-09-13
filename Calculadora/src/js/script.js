@@ -1,20 +1,36 @@
 const display = document.getElementById('display');
+const history = document.getElementById('history');
 let currentInput = '';
 let previousInput = '';
 let operation = null;
+let error = '';
 
 function updateDisplay() {
-    display.textContent = currentInput;
+    if (error) {
+        history.textContent = '';
+        display.textContent = error;
+        display.classList.add('error');
+        return;
+    }
+    display.classList.remove('error');
+    history.textContent = operation ? `${previousInput} ${operation}` : '';
+    display.textContent = currentInput === '' ? '0' : currentInput;
+}
+
+function clearError() {
+    error = '';
 }
 
 function clear() {
     currentInput = '';
     previousInput = '';
     operation = null;
+    error = '';
     updateDisplay();
 }
 
 function inputDigit(digit) {
+    clearError();
     if (currentInput.length < 10) { // Limita o número de dígitos
         currentInput += digit;
         updateDisplay();
@@ -22,6 +38,7 @@ function inputDigit(digit) {
 }
 
 function inputDecimal() {
+    clearError();
     if (!currentInput.includes('.')) {
         if (currentInput === '') currentInput = '0';
         currentInput += '.';
@@ -30,12 +47,14 @@ function inputDecimal() {
 }
 
 function handleOperator(nextOperation) {
+    clearError();
     if (previousInput !== '' && currentInput !== '' && operation) {
         operate();
     }
     operation = nextOperation;
     previousInput = currentInput;
     currentInput = '';
+    updateDisplay();
 }
 
 function operate() {
@@ -54,7 +73,11 @@ function operate() {
             break;
         case '÷':
             if (current === 0) {
-                alert("Não é possível dividir por zero");
+                currentInput = '';
+                previousInput = '';
+                operation = null;
+                error = 'Não é possível dividir por zero';
+                updateDisplay();
                 return;
             }
             currentInput = (prev / current).toString();
@@ -68,12 +91,16 @@ function operate() {
 }
 
 function inputPercentage() {
-    currentInput = (parseFloat(currentInput) / 100).toString();
+    const value = parseFloat(currentInput);
+    if (isNaN(value)) return; // ignora com display vazio
+    currentInput = (value / 100).toString();
     updateDisplay();
 }
 
 function inputPlusMinus() {
-    currentInput = (parseFloat(currentInput) * -1).toString();
+    const value = parseFloat(currentInput);
+    if (isNaN(value)) return; // ignora com display vazio
+    currentInput = (value * -1).toString();
     updateDisplay();
 }
 
@@ -82,6 +109,10 @@ function handleEnterKey() {
 }
 
 function handleBackspaceKey() {
+    if (error) {
+        clear();
+        return;
+    }
     currentInput = currentInput.slice(0, -1);
     updateDisplay();
 }
@@ -91,6 +122,9 @@ document.querySelectorAll('.calculator-button').forEach(button => {
         switch (button.textContent) {
             case 'C':
                 clear();
+                break;
+            case '⌫':
+                handleBackspaceKey();
                 break;
             case '±':
                 inputPlusMinus();
