@@ -2,6 +2,8 @@
 
 Uma calculadora de navegador sem build, sem dependências e sem complicação: HTML + CSS + um `script.js`. Abrir o `index.html` e usar.
 
+![Interface da calculadora](assets/interface.png)
+
 ## O que ela faz
 
 - As quatro operações, porcentagem (`%`) e inversão de sinal (`±`)
@@ -14,7 +16,7 @@ Uma calculadora de navegador sem build, sem dependências e sem complicação: H
 
 ```bash
 git clone https://github.com/tiagouzl/calculadorasimples.git
-cd calculadorasimples/Calculadora/src
+cd calculadorasimples
 python3 -m http.server 8099
 # abrir http://localhost:8099
 ```
@@ -24,8 +26,9 @@ Ou simplesmente abra o `index.html` direto no navegador. Não precisa instalar n
 ## Estrutura
 
 ```
-Calculadora/src/
-├── index.html        # layout + estilos
+.
+├── index.html        # layout
+├── css/style.css     # estilos (tema claro/escuro)
 ├── js/script.js      # lógica (operações, display, teclado)
 └── assets/           # imagens
 ```

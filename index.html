@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora</title>
+<meta name="description" content="Calculadora web simples">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23151821'/><text x='50' y='68' font-size='60' text-anchor='middle' fill='%236366f1'>=</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main class="calculator-container">
+  <div class="calculator-display" role="status" aria-live="polite">
+    <div id="history"></div>
+    <div id="display">0</div>
+  </div>
+  <div class="keys">
+    <button class="calculator-button danger" aria-label="limpar">C</button>
+    <button class="calculator-button operator" aria-label="porcento">%</button>
+    <button class="calculator-button operator" aria-label="dividir">÷</button>
+    <button class="calculator-button operator" aria-label="apagar último dígito">⌫</button>
+
+    <button class="calculator-button" aria-label="7">7</button>
+    <button class="calculator-button" aria-label="8">8</button>
+    <button class="calculator-button" aria-label="9">9</button>
+    <button class="calculator-button operator" aria-label="multiplicar">×</button>
+
+    <button class="calculator-button" aria-label="4">4</button>
+    <button class="calculator-button" aria-label="5">5</button>
+    <button class="calculator-button" aria-label="6">6</button>
+    <button class="calculator-button operator" aria-label="subtrair">-</button>
+
+    <button class="calculator-button" aria-label="1">1</button>
+    <button class="calculator-button" aria-label="2">2</button>
+    <button class="calculator-button" aria-label="3">3</button>
+    <button class="calculator-button operator" aria-label="somar">+</button>
+
+    <button class="calculator-button" aria-label="0">0</button>
+    <button class="calculator-button" aria-label="ponto decimal">.</button>
+    <button class="calculator-button" aria-label="inverter sinal">±</button>
+    <button class="calculator-button equals" aria-label="igual">=</button>
+  </div>
+</main>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
