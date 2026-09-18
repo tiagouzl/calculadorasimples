@@ -2,7 +2,7 @@
 
 Uma calculadora de navegador sem build, sem dependências e sem complicação: HTML + CSS + um `script.js`. Abrir o `index.html` e usar.
 
-![Interface da calculadora](assets/interface.png)
+![Interface da calculadora](assets/interface.png?v=2)
 
 ## O que ela faz
 
